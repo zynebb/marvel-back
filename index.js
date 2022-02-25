@@ -1,6 +1,9 @@
 const express = require("express");
+const mongoose = require("mongoose");
 // const mongoose=require("mongoose");
 const cors = require("cors");
+require("dotenv").config();
+mongoose.connect(process.env.MONGODB_URI);
 
 const characters = require("./data/characters.json");
 
@@ -10,4 +13,4 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.json({ characters });
 });
-app.listen(3000, () => console.log("server started"));
+app.listen(process.env.PORT, () => console.log("server started"));
