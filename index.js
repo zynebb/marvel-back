@@ -1,10 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 // const mongoose = require("mongoose");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const cors = require("cors");
 
-mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect(process.env.MONGODB_URI);
 
 const characters = require("./data/characters.json");
 
