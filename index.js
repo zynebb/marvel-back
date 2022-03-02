@@ -1,23 +1,32 @@
 require("dotenv").config();
 const express = require("express");
 // const mongoose = require("mongoose");
-// const mongoose = require("mongoose");
+const axios = require("axios");
 const cors = require("cors");
 
 // mongoose.connect(process.env.MONGODB_URI);
 
-const characters = require("./data/characters.json");
-const comics = require("./data/comics.json");
 const app = express();
 app.use(cors());
 // console.log(characters);
-console.log(comics);
+
 app.get("/", (req, res) => {
-  res.json({ characters });
+  res.json({ message: "Welcome to Marvel Api !" });
 });
-app.get("/comics", (req, res) => {
-  res.json({ comics });
+
+app.get("/characters", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}`
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.log(error);
+  }
 });
+// app.get("/comics", (req, res) => {
+//   res.json({ comics });
+// });
 app.all("*", function (req, res) {
   res.json({ message: "Page not found" });
 });
