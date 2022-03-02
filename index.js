@@ -26,4 +26,4 @@ app.get("/characters", async (req, res) => {
 app.all("*", function (req, res) {
   res.json({ message: "Page not found" });
 });
-app.listen(process.env.PORT || 3200, () => console.log("server started"));
+app.listen(process.env.PORT || 3000, () => console.log("server started"));
