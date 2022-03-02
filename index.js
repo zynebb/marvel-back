@@ -10,10 +10,6 @@ const app = express();
 app.use(cors());
 // console.log(characters);
 
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Marvel Api !" });
-});
-
 app.get("/characters", async (req, res) => {
   try {
     const response = await axios.get(
