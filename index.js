@@ -20,6 +20,16 @@ app.get("/", async (req, res) => {
     console.log(error);
   }
 });
+app.get("/", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.MARVEL_API_KEY}`
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+});
 // app.get("/comics", (req, res) => {
 //   res.json({ comics });
 // });
