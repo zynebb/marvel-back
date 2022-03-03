@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 // console.log(characters);
 
-app.get("/characters", async (req, res) => {
+app.get("/", async (req, res) => {
   try {
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}`
