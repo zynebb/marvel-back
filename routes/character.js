@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-
+const axios = require("axios");
 // Import des models
 const Character = require("../models/Character");
 
-router.get("/", async (req, res) => {
+router.get("/characters", async (req, res) => {
   try {
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}`
