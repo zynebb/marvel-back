@@ -1,25 +1,20 @@
 require("dotenv").config();
 const express = require("express");
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const axios = require("axios");
 const cors = require("cors");
 
-// mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const app = express();
 app.use(cors());
 // console.log(characters);
 
-app.get("/", async (req, res) => {
-  try {
-    const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}`
-    );
-    res.json(response.data);
-  } catch (error) {
-    console.log(error);
-  }
-});
+const characterRoutes = require("./routes/character");
+app.use(characterRoutes);
 app.get("/comics", async (req, res) => {
   try {
     const response = await axios.get(
